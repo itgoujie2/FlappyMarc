@@ -29,12 +29,12 @@ var main_state = {
     	this.bird.body.gravity.y = 1000;
 
     	//call 'jump' when hit space
-    	// var space_key = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    	// space_key.onDown.add(this.jump, this);
+    	var space_key = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    	space_key.onDown.add(this.jump, this);
 
         //call 'jump' when tap screen
-        var tapScreen = this.game.input.pointer1;
-        tapScreen.onDown.add(this.jump, this);
+        // var tapScreen = this.game.input.pointer1;
+        // tapScreen.onDown.add(this.jump, this);
 
 
 
