@@ -3,15 +3,17 @@ var game = new Phaser.Game(400, 490, Phaser.AUTO, 'game_div');
 
 var menu_state = {
     preload : function(){
-        this.game.stage.backgroundColor = '#71c5cf';
+        //this.game.stage.backgroundColor = '#71c5cf';
+        this.game.load.image('bg', '../images/bg.png');
     },
 
     create : function(){
+        this.game.add.sprite(0,0, 'bg');
         var menuText = null;
         this.menuText = this.game.add.text(
             this.game.world.width/2,
             this.game.world.height/2,
-            "click or tap to flap",
+            "FlappyMarc\nclick or tap to flap",
             {
                 font: '32px "Lucida Console"',
                 fill: '#fff',
@@ -36,7 +38,8 @@ var main_state = {
         // Function called first to load all the assets
 
         //background color
-        this.game.stage.backgroundColor = '#71c5cf';
+        //this.game.stage.backgroundColor = '#71c5cf';
+        this.game.load.image('bg', '../images/bg.png');
 
         //bird sprite
         this.game.load.image('bird', '../images/bird.png');
@@ -50,6 +53,7 @@ var main_state = {
         localStorage.score = 0;
         // Fuction called after 'preload' to setup the game    
 
+        this.game.add.sprite(0,0,'bg');
         //display bird
         this.bird = this.game.add.sprite(100, 245, 'bird');
 
@@ -177,10 +181,15 @@ var main_state = {
 var gameover_state = {
 
     preload : function() {
-        this.game.stage.backgroundColor = '#71c5cf';
+        //this.game.stage.backgroundColor = '#71c5cf';
+        this.game.load.image('bg', '../images/bg.png');
+        game.load.spritesheet('button', '../images/chatter.png', 50, 50);
     },
     create : function() {
+        this.game.add.sprite(0,0,'bg');
+
         var menuText = null;
+        var button = game.add.button(game.world.centerX-30, game.world.height/2+100, 'button', this.actionOnClick, this, 2, 1, 0);
         //get score if browser supports it
         var text;
         if(this.game.device.localStorage) {
@@ -209,6 +218,9 @@ var gameover_state = {
     },
     transition : function() {
         this.game.state.start('main');
+    },
+    actionOnClick : function(){
+
     }
 };
 
